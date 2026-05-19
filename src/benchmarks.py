@@ -11,7 +11,14 @@ import numpy as np
 def build_ground_truth(
     xb: np.ndarray, xq: np.ndarray, k: int, metric: int
 ) -> tuple[np.ndarray, np.ndarray]:
-    """Build exact k-NN ground truth with a Flat index."""
+    """Build exact k-NN ground truth with an uncompressed Flat index.
+    
+    Args:
+        xb: Base database vectors, shape (N, d).
+        xq: Query vectors, shape (M, d).
+        k: Number of nearest neighbors to retrieve.
+        metric: Faiss metric type constant (e.g., faiss.METRIC_L2).
+    """
     if k <= 0:
         raise ValueError("`k` must be positive.")
     if xb.ndim != 2 or xq.ndim != 2:
@@ -41,7 +48,16 @@ def build_ground_truth(
 def benchmark_index(
     index: faiss.Index, xq: np.ndarray, k: int
 ) -> tuple[np.ndarray, np.ndarray, float, float]:
-    """Search an index and return distances, ids, total time, and QPS."""
+    """Search an approximate index and profile its performance metrics.
+    
+    Args:
+        index: The trained and populated Faiss index instance.
+        xq: Query vectors, shape (M, d).
+        k: Number of nearest neighbors to retrieve.
+        
+    Returns:
+        A tuple containing (Distances, Indices, Total Search Time, Queries Per Second).
+    """
     if k <= 0:
         raise ValueError("`k` must be positive.")
     if xq.ndim != 2:
