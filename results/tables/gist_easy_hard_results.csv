@@ -1,0 +1,4 @@
+dataset,method,factory,setting_name,setting_value,recall_all,recall_hard,recall_easy,qps
+gist,IVFPQ,"IVF4096,PQ32x8",nprobe,64,0.2756,0.2172,0.3408,4647.742917694922
+gist,HNSWSQ,HNSW32_SQ8,efSearch,256,0.9431,0.9044,0.9656,1136.4291101434933
+gist,LSH,IndexLSH,nbits,512,0.0722,0.0556,0.1,1317.8743161836298

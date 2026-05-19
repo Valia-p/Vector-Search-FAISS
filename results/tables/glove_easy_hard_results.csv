@@ -1,0 +1,4 @@
+dataset,method,factory,setting_name,setting_value,recall_all,recall_hard,recall_easy,qps
+glove,IVFPQ,"IVF4096,PQ20x8",nprobe,64,0.65636,0.55392,0.72548,52768.49932397862
+glove,HNSWSQ,HNSW32_SQ8,efSearch,256,0.97677,0.9558,0.986,10109.30177097289
+glove,LSH,IndexLSH,nbits,512,0.60093,0.47508,0.70088,14942.840645616765

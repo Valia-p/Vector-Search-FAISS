@@ -1,0 +1,4 @@
+dataset,method,factory,search_param_name,search_param_value,recall_at_10,qps,total_time_sec
+gist,HNSWSQ,HNSW32_SQ8,efSearch,256,0.9426,2115.0252235827734,0.472807600046508
+glove,HNSWSQ,HNSW32_SQ8,efSearch,256,0.97689,9435.957168110215,1.059775899979286
+sift,HNSWSQ,HNSW32_SQ8,efSearch,256,0.98687,9590.208473980212,1.042730199988

@@ -1,0 +1,4 @@
+dataset,method,factory,search_param_name,search_param_value,recall_at_10,qps,total_time_sec
+glove,LSH,IndexLSH,nbits,128,0.33296,42166.69336667458,0.23715400003129616
+glove,LSH,IndexLSH,nbits,256,0.47262,26339.120389079984,0.3796634000027552
+glove,LSH,IndexLSH,nbits,512,0.60093,13864.564281372212,0.7212631999864243

@@ -1,0 +1,2 @@
+dataset,q25,q75,hard_query_count,easy_query_count,total_query_count
+glove,2.024770498275757,2.815549850463867,2500,2500,10000

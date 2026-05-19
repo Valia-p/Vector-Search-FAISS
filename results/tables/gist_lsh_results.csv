@@ -1,0 +1,4 @@
+dataset,method,factory,search_param_name,search_param_value,recall_at_10,qps,total_time_sec
+gist,LSH,IndexLSH,nbits,128,0.023,5754.763073953697,0.17376909998711199
+gist,LSH,IndexLSH,nbits,256,0.0398,3378.1820787510765,0.2960171999875456
+gist,LSH,IndexLSH,nbits,512,0.0722,1895.3659438087127,0.5276026000501588
