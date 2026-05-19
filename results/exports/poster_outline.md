@@ -1,52 +1,51 @@
 # FAISS Project Poster Outline (A0 Drafting Guide)
 
-## 1) Title and Context
+## 1) Title & Scope
 - **FAISS Vector Search Evaluation: IVFPQ vs HNSWSQ vs LSH**
-- Benchmark study on **SIFT**, **GIST**, **GloVe**
-- Focus: accuracy-speed trade-offs and robustness
+- Datasets: **SIFT**, **GIST**, **GloVe**
+- Goal: evaluate recall-speed trade-offs and robustness
 - Add authors, affiliation, course, date
 
 **Suggested visual**
-- Small pipeline icon or experiment flow sketch
+- Small pipeline sketch (data ? index build ? search ? metrics)
 
-## 2) Motivation and Questions
-- ANN systems require balancing recall and throughput
+## 2) Motivation & Research Questions
+- ANN systems need both high accuracy and high throughput
 - Compare three FAISS method families under a common protocol
-- Main questions:
-- Which method gives best Recall@10?
-- Which method gives best QPS?
-- How do query hardness and noise affect performance?
+- Questions:
+- Which method maximizes Recall@10?
+- Which method maximizes QPS?
+- How do hardness and noise affect behavior?
 
 **Suggested visual**
-- Compact “research questions” box
+- Compact “questions” callout box
 
 ## 3) Methods
 - **IVFPQ**: inverted file + product quantization
 - **HNSWSQ**: graph search + scalar quantization
 - **LSH**: hashing baseline
-- Swept parameters:
+- Sweeps:
 - IVFPQ: `nprobe`
-- HNSWSQ: `efSearch` and SQ precision
+- HNSWSQ: `efSearch` and SQ bit precision
 - LSH: `nbits`
 
 **Suggested visual**
-- One comparison table (method, key params, expected effect)
+- One method/parameter comparison table
 
-## 4) Datasets and Setup
-- SIFT and GIST evaluated with **L2** metric
-- GloVe evaluated as angular-style search:
-- L2-normalize vectors
-- use inner product search
-- Exact ground truth built with FAISS Flat indices
-- Metrics: **Recall@10** and **QPS** (search-time only)
+## 4) Datasets & Experimental Setup
+- SIFT and GIST: **L2** metric
+- GloVe: angular-style setup (L2 normalize + inner product)
+- Exact ground truth from FAISS Flat indexes
+- Primary metrics: **Recall@10** and **QPS**
+- Extra analyses: RC, easy/hard splits, noisy queries
 
 **Suggested visual**
-- Setup block diagram + metric definitions
+- Setup block + metric definitions
 
-## 5) Main Recall-QPS Results
-- HNSWSQ reaches the strongest recall in all datasets
-- IVFPQ provides very high throughput in speed-oriented settings
-- LSH generally trails in recall
+## 5) Main Cross-Dataset Results (Recall-QPS)
+- HNSWSQ is the top-recall method on all three datasets
+- IVFPQ reaches the highest throughput in speed-oriented settings
+- LSH is generally weaker on recall
 
 **Suggested figures**
 - `results/plots/sift_recall_vs_qps_final.png`
@@ -57,19 +56,12 @@
 **Suggested tables**
 - `results/tables/best_overall_per_dataset.csv`
 - `results/tables/best_config_per_dataset_method.csv`
-
-## 6) Throughput-Oriented View
-- High-QPS settings sacrifice recall, especially for IVFPQ/LSH
-- HNSWSQ remains competitive with strong recall across settings
-- Use this section for deployment-oriented interpretation
-
-**Suggested table**
 - `results/tables/high_qps_summary.csv`
 
-## 7) Query Hardness (RC) and Easy/Hard Split
-- Relative Contrast (RC) used as query hardness indicator
-- Easy/hard split from RC quantiles (q75 / q25)
-- Consistent pattern: `recall_easy > recall_all > recall_hard`
+## 6) Query Hardness (RC) and Easy/Hard Performance
+- RC used as a query hardness signal
+- Easy/hard split via q75/q25 quantiles
+- Observed pattern: `recall_easy > recall_all > recall_hard`
 
 **Suggested figures**
 - `results/plots/easy_hard_comparison.png`
@@ -80,57 +72,88 @@
 **Suggested table**
 - `results/tables/all_easy_hard_results.csv`
 
-## 8) Noisy Query Robustness
-- Queries perturbed with Gaussian noise (`sigma = 0.00, 0.01, 0.05, 0.10`)
+## 7) Noisy-Query Robustness
+- Gaussian perturbation applied at multiple sigma levels
 - Compare recall degradation by method and dataset
-- Robustness is dataset-dependent
+- Robustness is strongly dataset-dependent
 
 **Suggested figures**
 - `results/plots/noise_robustness_comparison.png`
-- Optional per-dataset noise plots:
-- `sift_noise_vs_recall.png`, `gist_noise_vs_recall.png`, `glove_noise_vs_recall.png`
+- Optional per-dataset curves:
+- `results/plots/sift_noise_vs_recall.png`
+- `results/plots/gist_noise_vs_recall.png`
+- `results/plots/glove_noise_vs_recall.png`
 
 **Suggested table**
 - `results/tables/all_noisy_query_results.csv`
 
-## 9) Discussion and Practical Takeaways
-- If priority is maximum recall, HNSWSQ is the strongest choice here
-- If priority is very high throughput, IVFPQ is often preferable
-- LSH remains a lightweight baseline with lower recall
-- RC and noise analyses add useful stress-testing beyond static Recall-QPS points
+## 8) Extra Insight A: Adaptive Search Effort on Hard Queries
+- Evaluate low vs high search effort on hard-query subsets
+- IVFPQ: low/high `nprobe` (same factory)
+- HNSWSQ: low/high `efSearch` (same factory)
+- Use this to show whether hard-query recall can be recovered at speed cost
 
-**Suggested visual**
-- “When to choose each method” decision box
+**Suggested figure if available**
+- `results/plots/adaptive_hard_query_comparison.png`
 
-## 10) Conclusions and Reproducibility
-- Three-dataset FAISS scaffold completed end-to-end
-- Cross-dataset summaries and comparison plots generated
-- Next steps:
-- finalize README/report wording
-- export notebook (HTML/PDF)
-- assemble final A0 poster layout
+**Suggested table if available**
+- `results/tables/adaptive_hard_query_results.csv`
+
+**Poster note if not generated yet**
+- Mark as “extra analysis in progress / optional extension”
+
+## 9) Extra Insight B: Extended SIFT Noise Sensitivity
+- Motivation: original SIFT noise curve was near-flat
+- Test larger sigma range to check scale-mismatch hypothesis
+- Compare IVFPQ/HNSWSQ/LSH under stronger perturbations
+- Clarify whether SIFT robustness is intrinsic or sigma-scale dependent
+
+**Suggested figure if available**
+- `results/plots/sift_extended_noise_vs_recall.png`
+
+**Suggested table if available**
+- `results/tables/sift_extended_noise_results.csv`
+
+**Poster note if not generated yet**
+- Mark as “supplementary stress test”
+
+## 10) Discussion, Conclusions & Reproducibility
+- Recall-first choice: HNSWSQ consistently strongest
+- Throughput-first choice: IVFPQ often fastest
+- Best recall method does not change across datasets in current results
+- RC and noise analyses provide defensible robustness insights
+- Next steps: finalize README, export notebook (HTML/PDF), assemble poster
 
 **Suggested footer block**
-- Repo path / QR code
-- Key artifact folders: `results/tables/`, `results/plots/`, `results/exports/`
+- Repo/QR + artifact folders: `results/tables/`, `results/plots/`, `results/exports/`
 
 ---
 
-## Recommended Presentation Flow (60-90 seconds core)
-1. Problem and evaluation goal.
-2. Methods and datasets.
-3. Recall-QPS results (main comparison).
-4. RC easy/hard findings.
-5. Noise robustness findings.
-6. Final takeaways and practical method choice.
+## Results-Based Conclusions (Poster-Ready)
+- **Recall dominance:** HNSWSQ achieved the highest Recall@10 on SIFT, GIST, and GloVe.
+- **Throughput dominance:** IVFPQ produced the strongest high-QPS configurations in most dataset/method comparisons.
+- **Method stability across datasets:** The top-recall method (HNSWSQ) did not change across datasets.
+- **RC behavior:** RC split behaved as expected, with easy queries consistently yielding higher recall than hard queries.
+- **Noise behavior:** Robustness trends are dataset-specific; degradation is stronger in some datasets than others.
+- **Adaptive effort insight:** Increasing `nprobe`/`efSearch` for hard queries is a plausible strategy to improve hard-query recall, with explicit speed cost.
 
-## Final Poster Build Checklist
-- Clear title, authors, affiliation
-- Research questions
-- Setup + metric definitions
-- 3 Recall-QPS final plots
-- Best-method comparison plot
-- RC/easy-hard figure(s)
-- Noise robustness figure
-- Concise conclusions
-- Reproducibility/QR footer
+## Recommended Talk Track (60-90 seconds)
+1. Start with the ANN trade-off problem and research questions.
+2. Show Recall-QPS plots and immediately state the main winner by recall and speed.
+3. Use RC/easy-hard to show that query difficulty materially changes outcomes.
+4. Show noise robustness to stress-test conclusions.
+5. Add adaptive-effort and extended-SIFT-noise as practical extensions.
+6. Close with actionable method-selection guidance.
+
+## Final Poster Checklist
+- Title/authors/affiliation/date
+- Research questions and setup
+- Method/parameter summary
+- Final Recall-QPS plots (3 datasets)
+- Best-method comparison figure
+- RC/easy-hard figure(s) + summary table
+- Noise robustness figure + summary table
+- Extra-insight placeholders or final figures:
+- `adaptive_hard_query_comparison.png`
+- `sift_extended_noise_vs_recall.png`
+- Clear conclusions + reproducibility/QR footer
