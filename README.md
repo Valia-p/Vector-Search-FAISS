@@ -86,7 +86,7 @@ Generated artifacts are saved under:
   - RC/easy-hard/noise tables per dataset
   - Cross-dataset summaries (for example `all_datasets_results.csv`, best-config summaries, robustness/easy-hard combined tables)
 - `results/plots/`
-  - Recall–QPS plots per dataset
+  - Recall-QPS plots per dataset
   - RC histograms
   - easy-vs-hard recall comparison plots
   - noisy-query robustness plots
