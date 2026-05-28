@@ -66,12 +66,8 @@ The notebook at `notebooks/experiments.ipynb` is configured for **local executio
 **Steps:**
 
 1. Clone the repository and enter the project directory.
-2. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-3. Download the datasets (see [Datasets](#datasets)) and place them under `data/raw/`.
-4. Open `notebooks/experiments.ipynb` in Jupyter or VS Code and click **Run All**.
+2. Download the datasets (see [Datasets](#datasets)) and place them under `data/raw/`.
+3. Open `notebooks/experiments.ipynb` in Jupyter or VS Code and click **Run All**.
 
 The first cell runs `%pip install -r ../requirements.txt` automatically, so dependencies are always in sync with the active kernel.
 
