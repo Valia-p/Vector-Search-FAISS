@@ -1,4 +1,4 @@
-dataset,method,factory,search_param_name,search_param_value,recall_at_10,qps,total_time_sec
-glove,LSH,IndexLSH,nbits,128,0.33296,42166.69336667458,0.23715400003129616
-glove,LSH,IndexLSH,nbits,256,0.47262,26339.120389079984,0.3796634000027552
-glove,LSH,IndexLSH,nbits,512,0.60093,13864.564281372212,0.7212631999864243
+dataset,method,factory,search_param_name,search_param_value,recall_at_10,qps,total_time_sec,index_size_mb
+glove,LSH,IndexLSH,nbits,128,0.33296,36992.714279831824,0.2703235000371933,2.948086738586426
+glove,LSH,IndexLSH,nbits,256,0.47262,21547.70251944221,0.4640865999972448,5.896084785461426
+glove,LSH,IndexLSH,nbits,512,0.60093,12406.653886811711,0.8060191000113264,11.792080879211426

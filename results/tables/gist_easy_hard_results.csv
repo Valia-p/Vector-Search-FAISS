@@ -1,4 +1,4 @@
-dataset,method,factory,setting_name,setting_value,recall_all,recall_hard,recall_easy,qps
-gist,IVFPQ,"IVF4096,PQ32x8",nprobe,64,0.2756,0.2172,0.3408,4647.742917694922
-gist,HNSWSQ,HNSW32_SQ8,efSearch,256,0.9431,0.9044,0.9656,1136.4291101434933
-gist,LSH,IndexLSH,nbits,512,0.0722,0.0556,0.1,1317.8743161836298
+dataset,method,factory,setting_name,setting_value,recall_all,recall_hard,recall_easy,qps_all,qps_hard,qps_easy
+gist,IVFPQ,"IVF4096,PQ32x8",nprobe,64,0.2756,0.214,0.342,2713.5922752978686,3756.607874148315,4285.474301887329
+gist,HNSWSQ,HNSW32_SQ8,efSearch,256,0.9439,0.9008,0.9672,1402.3630658451084,1856.0961251697906,1906.0645638572696
+gist,LSH,IndexLSH,nbits,512,0.0722,0.0552,0.1,1007.578400174348,1800.603994004338,1778.7719929447642
