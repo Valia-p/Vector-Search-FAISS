@@ -79,7 +79,18 @@ A ready-to-run Colab version of the notebook is available here:
 
 [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1-XruUVMSTFoDz0Ck2Q4ue0OuvbDUgggu?usp=sharing)
 
-The Colab notebook reads datasets from Google Drive. Mount your Drive and place the datasets under `MyDrive/faiss_project/data/raw/` before running.
+The datasets are pre-uploaded and shared — no manual downloading required.
+
+**Steps:**
+
+1. Open the shared datasets folder: [Google Drive — faiss\_project datasets](https://drive.google.com/drive/folders/1SyNPoE7gL8IWqOtSAW-6ykiOgwhiXbbI?usp=drive_link)
+2. Add a shortcut to your own Drive so the notebook can find it:
+   - Right-click the `data` folder inside the shared folder
+   - Select **Organize → Add shortcut**
+   - Navigate to `My Drive/faiss_project/` and confirm
+   - The final path in your Drive should be `My Drive/faiss_project/data/`
+3. Open the Colab notebook via the badge above and click **Run All**.
+   The first cell mounts your Drive and installs dependencies automatically.
 
 ---
 
